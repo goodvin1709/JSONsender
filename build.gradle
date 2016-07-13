@@ -1,0 +1,28 @@
+group 'SlotMachine'
+version '1.0'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+mainClassName = 'com.goodvin1709.Application'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+jar{
+manifest.attributes 'Main-Class' : mainClassName
+version = version
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.16'
+    compile group: 'org.json', name: 'json', version: '20090211'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
