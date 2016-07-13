@@ -15,6 +15,11 @@ import java.util.List;
 public class Application {
     private static final Logger LOGGER = Logger.getLogger(Application.class);
     private static final String URL = "https://192.168.1.1";
+    private static final MethodType method = MethodType.POST;
+    private static List<NameValuePair> params = new ArrayList<>();
+    static {
+        params.add(new BasicNameValuePair("paramName","ParamValue"));
+    }
 
     public static void main(String[] args) {
         System.out.println(TimeUtils.messageForCurrentTime("Application started."));
@@ -22,9 +27,7 @@ public class Application {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<NameValuePair> params = new ArrayList<>();
-
-                JSONObject response = JSONParser.makeHttpRequest(URL,MethodType.POST,params);
+                JSONObject response = JSONParser.makeHttpRequest(URL,method,params);
                 System.out.println(TimeUtils.messageForCurrentTime("Response:"));
                 if (response.length()>0) {
                     Iterator<String> jsonElementIterator = response.keys();
